@@ -4,3 +4,6 @@ __pycache__/
 .pytest_cache/
 case_study_data/
 results_trial/
+dist/
+build/
+token

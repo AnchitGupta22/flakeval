@@ -2,7 +2,8 @@
     <img src="assets/flakeval_logo.png" alt="Logo" width="240" />
     <br/>
     <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
-    <a><img alt="Latest Release" src="https://img.shields.io/badge/version-1.0.0-orange" /></a>
+    <a href="https://pypi.org/project/flakeval/"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/flakeval" /></a>
+    <a href="https://pypi.org/project/flakeval/"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/flakeval" /></a>
 </p>
 
 ---
