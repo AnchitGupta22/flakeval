@@ -1,0 +1,33 @@
+========================================================================
+flakeval report: baseline = qwen
+========================================================================
+
+== qwen ==
+items: 200   runs per item: 5
+mean score: 0.8260   95% CI: [0.7710, 0.8760]
+uncertainty from run-to-run noise: 0% (rest: eval-set sampling)
+flaky items (score changes between runs): 1 of 200 (0.5%)
+most unstable items: NYSEDREGENTS_2013_8_42 (sd 0.45)
+
+--- A/A test: the baseline against itself (should be WITHIN NOISE) ---
+A: 0.8260 (5 runs)   B: 0.8290 (5 runs)   items: 200
+delta (B - A): +0.0030   95% CI: [-0.0010, +0.0080]   p = 0.3854
+smallest reliably detectable difference: ~0.0062
+VERDICT: WITHIN NOISE
+Most uncertainty is run-to-run noise (100%). Running each item more times will tighten the interval. Currently detectable difference: ~0.006.
+
+--- qwen vs llama ---
+A: 0.8260 (5 runs)   B: 0.7090 (5 runs)   items: 200
+delta (B - A): -0.1170   95% CI: [-0.1690, -0.0640]   p = 0.0001
+smallest reliably detectable difference: ~0.0748
+VERDICT: REAL REGRESSION
+The 95% interval excludes zero after accounting for run noise and question sampling.
+
+--- qwen vs qwen_t03 ---
+A: 0.8260 (5 runs)   B: 0.8250 (5 runs)   items: 200
+delta (B - A): -0.0010   95% CI: [-0.0030, +0.0000]   p = 1.0000
+smallest reliably detectable difference: ~0.0028
+VERDICT: WITHIN NOISE
+Most uncertainty is run-to-run noise (100%). Running each item more times will tighten the interval. Currently detectable difference: ~0.003.
+WARNING: System B: no item changed score across runs. Its runs look identical (fixed seed, temperature 0, caching?), so run-to-run noise is NOT being measured for it.
+

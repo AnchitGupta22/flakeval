@@ -1,0 +1,32 @@
+========================================================================
+flakeval report: baseline = qwen
+========================================================================
+
+== qwen ==
+items: 200   runs per item: 3
+mean score: 0.7450   95% CI: [0.6950, 0.7900]
+uncertainty from run-to-run noise: 31% (rest: eval-set sampling)
+flaky items (score changes between runs): 65 of 200 (32.5%)
+most unstable items: gsm8k_test_1001 (sd 0.58), gsm8k_test_1020 (sd 0.58), gsm8k_test_1035 (sd 0.58), gsm8k_test_1030 (sd 0.58), gsm8k_test_1062 (sd 0.58)
+
+--- A/A test: the baseline against itself (should be WITHIN NOISE) ---
+A: 0.7450 (3 runs)   B: 0.6967 (3 runs)   items: 200
+delta (B - A): -0.0483   95% CI: [-0.0883, -0.0083]   p = 0.0241
+smallest reliably detectable difference: ~0.0575
+VERDICT: REAL REGRESSION
+The 95% interval excludes zero after accounting for run noise and question sampling.
+
+--- qwen vs llama ---
+A: 0.7450 (3 runs)   B: 0.7533 (3 runs)   items: 200
+delta (B - A): +0.0083   95% CI: [-0.0333, +0.0517]   p = 0.7597
+smallest reliably detectable difference: ~0.0605
+VERDICT: WITHIN NOISE
+Most uncertainty is run-to-run noise (70%). Running each item more times will tighten the interval. Currently detectable difference: ~0.060.
+
+--- qwen vs qwen_check ---
+A: 0.7450 (3 runs)   B: 0.6983 (3 runs)   items: 200
+delta (B - A): -0.0467   95% CI: [-0.0833, -0.0100]   p = 0.0154
+smallest reliably detectable difference: ~0.0522
+VERDICT: REAL REGRESSION
+The 95% interval excludes zero after accounting for run noise and question sampling.
+

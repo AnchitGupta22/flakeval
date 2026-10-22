@@ -1,0 +1,8 @@
+cff-version: 0.1.0
+message: "If you use flakeval in your work, please cite it using the metadata below."
+title: "flakeval"
+type: software
+authors:
+  - family-names: Gupta
+    given-names: Anchit
+repository-code: "https://github.com/AnchitGupta22/flakeval"

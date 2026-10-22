@@ -1,0 +1,96 @@
+Noise diagnostics for examples\template_case_studies\results_template_gsm8k
+baseline system: qwen
+same-configuration systems found: qwen, qwen_repeat, qwen_repeat2, qwen_repeat3, qwen_repeat4, qwen_repeat5
+
+1. ACCURACY OF EVERY INDIVIDUAL RUN
+   scorer = answer_line
+     llama            runs: 0.730  0.755  0.775   mean 0.753   SD of runs 2.3 pts
+     qwen             runs: 0.770  0.755  0.710   mean 0.745   SD of runs 3.1 pts
+     qwen_check       runs: 0.710  0.710  0.675   mean 0.698   SD of runs 2.0 pts
+     qwen_repeat      runs: 0.700  0.675  0.715   mean 0.697   SD of runs 2.0 pts
+     qwen_repeat2     runs: 0.685  0.740  0.750   mean 0.725   SD of runs 3.5 pts
+     qwen_repeat3     runs: 0.725  0.695  0.700   mean 0.707   SD of runs 1.6 pts
+     qwen_repeat4     runs: 0.750  0.750  0.720   mean 0.740   SD of runs 1.7 pts
+     qwen_repeat5     runs: 0.715  0.760  0.670   mean 0.715   SD of runs 4.5 pts
+   scorer = final_number
+     llama            runs: 0.745  0.760  0.780   mean 0.762   SD of runs 1.8 pts
+     qwen             runs: 0.820  0.810  0.765   mean 0.798   SD of runs 2.9 pts
+     qwen_check       runs: 0.800  0.780  0.795   mean 0.792   SD of runs 1.0 pts
+     qwen_repeat      runs: 0.785  0.735  0.795   mean 0.772   SD of runs 3.2 pts
+     qwen_repeat2     runs: 0.785  0.805  0.805   mean 0.798   SD of runs 1.2 pts
+     qwen_repeat3     runs: 0.800  0.780  0.790   mean 0.790   SD of runs 1.0 pts
+     qwen_repeat4     runs: 0.805  0.800  0.770   mean 0.792   SD of runs 1.9 pts
+     qwen_repeat5     runs: 0.790  0.815  0.775   mean 0.793   SD of runs 2.0 pts
+
+2. ARE RUNS OF THE SAME CONFIGURATION INTERCHANGEABLE (WHAT FLAKEVAL ASSUMES)?
+   scorer = answer_line
+     SD of the 18 run accuracies: 3.04 pts observed; 2.40 pts expected if runs are interchangeable (95th percentile 3.11); p = 0.063
+     runs of the same system agree with each other +0.09 points more often than with runs of other systems (expected -0.01 if interchangeable); one-sided p = 0.438
+     spread between the 6 systems' mean accuracies: SD 1.89 pts observed; 1.69 pts expected if the runs were randomly assigned to systems
+     systems as groups (shuffling whole runs between systems): p = 0.351
+     qwen_repeat vs qwen: gap -4.8 pts; flakeval p = 0.023 (real regression); independent permutation p = 0.018
+     qwen_repeat2 vs qwen: gap -2.0 pts; flakeval p = 0.376 (within noise); independent permutation p = 0.341
+     qwen_repeat3 vs qwen: gap -3.8 pts; flakeval p = 0.063 (within noise); independent permutation p = 0.067
+     qwen_repeat4 vs qwen: gap -0.5 pts; flakeval p = 0.874 (within noise); independent permutation p = 0.872
+     qwen_repeat5 vs qwen: gap -3.0 pts; flakeval p = 0.164 (within noise); independent permutation p = 0.142
+   scorer = final_number
+     SD of the 18 run accuracies: 2.06 pts observed; 1.87 pts expected if runs are interchangeable (95th percentile 2.41); p = 0.266
+     runs of the same system agree with each other -0.24 points more often than with runs of other systems (expected -0.00 if interchangeable); one-sided p = 0.756
+     spread between the 6 systems' mean accuracies: SD 0.99 pts observed; 1.16 pts expected if the runs were randomly assigned to systems
+     systems as groups (shuffling whole runs between systems): p = 0.711
+     qwen_repeat vs qwen: gap -2.7 pts; flakeval p = 0.135 (within noise); independent permutation p = 0.105
+     qwen_repeat2 vs qwen: gap +0.0 pts; flakeval p = 1.000 (within noise); independent permutation p = 1.000
+     qwen_repeat3 vs qwen: gap -0.8 pts; flakeval p = 0.649 (within noise); independent permutation p = 0.669
+     qwen_repeat4 vs qwen: gap -0.7 pts; flakeval p = 0.754 (within noise); independent permutation p = 0.751
+     qwen_repeat5 vs qwen: gap -0.5 pts; flakeval p = 0.802 (within noise); independent permutation p = 0.816
+   Reading: a small p for the SD means some runs are better or worse than chance allows. A small p for the agreement means runs of one system resemble each other (related seeds or shared server state?). Either way the runs are NOT interchangeable. If both are unremarkable and flakeval's p agrees with the permutation p, the flagged control is consistent with chance.
+
+3. HOW OFTEN DOES FLAKEVAL RAISE A FALSE ALARM ON THIS KIND OF DATA?
+   scorer = answer_line: in data where nothing can be going on (each question's runs shuffled), flakeval flagged 5.1% of random same-configuration comparisons on average (range 0% to 13% across 30 such datasets). A calibrated test is near 5%.
+     in YOUR data, 41 of 400 regroupings of the same runs were flagged (10.2%); these regroupings share the same runs, so one dataset's share is noisy.
+   scorer = final_number: in data where nothing can be going on (each question's runs shuffled), flakeval flagged 3.8% of random same-configuration comparisons on average (range 0% to 15% across 30 such datasets). A calibrated test is near 5%.
+     in YOUR data, 15 of 400 regroupings of the same runs were flagged (3.8%); these regroupings share the same runs, so one dataset's share is noisy.
+   Reading: an average near or below 5% means flakeval is not over-confident on this data when runs are interchangeable. Section 2 says whether they are.
+
+4. HOW MUCH OF A STRICT-SCORING GAP IS FORMATTING?
+   qwen_repeat vs qwen: answer_line gap -4.8 pts, final_number gap -2.7 pts, formatting part -2.2 pts (45% of the strict gap)
+   qwen_repeat2 vs qwen: answer_line gap -2.0 pts, final_number gap +0.0 pts, formatting part -2.0 pts (100% of the strict gap)
+   qwen_repeat3 vs qwen: answer_line gap -3.8 pts, final_number gap -0.8 pts, formatting part -3.0 pts (78% of the strict gap)
+   qwen_repeat4 vs qwen: answer_line gap -0.5 pts, final_number gap -0.7 pts, formatting part +0.2 pts (gap under 1 point: too small to apportion)
+   qwen_repeat5 vs qwen: answer_line gap -3.0 pts, final_number gap -0.5 pts, formatting part -2.5 pts (83% of the strict gap)
+   Replies without an 'Answer:' line (strict scoring marks them wrong), per system:
+     system            replies  no Answer: line  rescued by lenient
+     llama                 600       14 ( 2.3%)          5
+     qwen                  600       45 ( 7.5%)         32
+     qwen_check            600       74 (12.3%)         56
+     qwen_repeat           600       68 (11.3%)         45
+     qwen_repeat2          600       60 (10.0%)         44
+     qwen_repeat3          600       67 (11.2%)         50
+     qwen_repeat4          600       50 ( 8.3%)         31
+     qwen_repeat5          600       65 (10.8%)         47
+
+5. WHICH QUESTIONS PRODUCED THE BASELINE-VS-FIRST-REPEAT GAP?
+   scorer = answer_line: 85 of 200 questions differ at all; the 10 largest differences make up 21% of the total absolute difference; mean difference -4.8 pts
+     gsm8k_test_576: qwen 1.00, qwen_repeat 0.00
+     gsm8k_test_991: qwen 1.00, qwen_repeat 0.00
+     gsm8k_test_1272: qwen 0.33, qwen_repeat 1.00
+     gsm8k_test_1170: qwen 0.33, qwen_repeat 1.00
+     gsm8k_test_319: qwen 1.00, qwen_repeat 0.33
+
+6. DOES THE GAP DEPEND ON WHEN THE QUESTIONS WERE ASKED?
+   scorer = answer_line; questions in the order they were asked, in four blocks (each question's runs were asked together)
+     block              qwen    qwen_repeat   qwen_repeat2   qwen_repeat3   qwen_repeat4   qwen_repeat5
+     1                 0.807          0.733          0.753          0.793          0.753          0.720
+     2                 0.693          0.647          0.693          0.620          0.713          0.707
+     3                 0.780          0.700          0.760          0.720          0.793          0.753
+     4                 0.700          0.707          0.693          0.693          0.700          0.680
+   Reading: a gap that is present in every block points to a uniform difference between the runs; a gap in only some blocks points to something that changed during the run.
+
+HOW TO READ THIS
+  - Section 2 not significant and flakeval's p close to the permutation p, and section 3 near or below 5%:
+    the flagged control is consistent with chance. Report it, and keep the same-system control in every study.
+  - Section 2 significant (runs differ more than chance allows): flakeval's p-values are too optimistic for this
+    task. Treat borderline p-values (0.01 to 0.05) as unreliable here, say so, and run `determinism`.
+  - Section 3 clearly above 5%: flakeval itself is over-confident on this kind of data; do not publish p-values
+    without that caveat.
+  - Section 4 large: the strict-scoring gap is mostly formatting, not correctness. Prefer the lenient result.
