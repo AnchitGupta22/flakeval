@@ -3,7 +3,7 @@
     <br/>
     <br/>
     <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
-    <a href="https://pypi.org/project/flakeval/"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/flakeval?cacheSeconds=0" /></a>
+    <a href="https://pypi.org/project/flakeval/"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/flakeval.svg?maxAge=86400" /></a>
     <a href="https://pypi.org/project/flakeval/"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/flakeval" /></a>
     <a href="https://github.com/AnchitGupta22/flakeval/actions"><img alt="Tests"
     src="https://github.com/AnchitGupta22/flakeval/actions/workflows/tests.yml/badge.svg"/></a>
