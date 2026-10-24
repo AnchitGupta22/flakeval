@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "flakeval"
-version = "0.1.1"
+version = "0.1.2"
 description = "Is your LLM eval improvement real, or just noise? Repeat evals, measure variance, get a verdict."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -28,6 +28,11 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent"
 ]
+
+[project.urls]
+Homepage = "https://anchitgupta22.github.io/flakeval/"
+Repository = "https://github.com/AnchitGupta22/flakeval"
+Issues = "https://github.com/AnchitGupta22/flakeval/issues"
 
 [project.optional-dependencies]
 dev = ["pytest"]
