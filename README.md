@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/flakeval_logo.png" alt="Logo" width="240" />
+    <img src="https://raw.githubusercontent.com/AnchitGupta22/flakeval/main/assets/flakeval_logo.png" alt="Logo" width="240" />
     <br/>
     <br/>
     <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
